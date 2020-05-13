@@ -10,14 +10,5 @@
         </div>
     </div>
 
-    <div class="lg:w-1/6 lg:px-10 px-1">
-        <div class="flex flex-col items-center border-2 border-blue-400 rounded-lg">
-            <div class="p-3 text-lg">
-                {{ $idea->votes->count() }}
-            </div>
-            <div class="bg-blue-400 text-white w-full text-center p-1">
-                Vote
-            </div>
-        </div>
-    </div>
+    @livewire('vote', ['idea' => $idea])
 </div>

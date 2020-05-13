@@ -18,6 +18,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/main.css') }}" rel="stylesheet">
+    @livewireStyles
 </head>
 <body>
     <div id="app">
@@ -33,5 +34,7 @@
             </main>
         </section>
     </div>
+
+    @livewireScripts
 </body>
 </html>
