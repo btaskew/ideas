@@ -10,4 +10,8 @@
             {{ $userHasVoted ? 'Voted!' : 'Vote' }}
         </div>
     </div>
+
+    @if ($showLoginForm)
+        @livewire('vote-login-form')
+    @endif
 </div>

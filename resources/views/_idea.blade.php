@@ -5,10 +5,10 @@
             {{ $idea->description }}
         </p>
         <div class="flex justify-between text-xs">
-            <span>Created about {{ $idea->created_at->diffForHumans() }} by {{ $idea->creator->name }}</span>
+            <span>Created {{ $idea->created_at->diffForHumans() }} by {{ $idea->creator->name }}</span>
             <span>1 comment</span>
         </div>
     </div>
 
-    @livewire('vote', ['idea' => $idea])
+    @livewire('vote-button', ['idea' => $idea])
 </div>

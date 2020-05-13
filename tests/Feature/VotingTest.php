@@ -55,4 +55,28 @@ class VotingTest extends TestCase
 
         $this->assertCount(1, $idea->votes);
     }
+
+    /** @test */
+    public function a_login_form_is_displayed_if_a_guest_attempts_to_vote()
+    {
+        $idea = create(Idea::class);
+
+        Livewire::test(VoteButton::class, ['idea' => $idea])
+            ->call('vote')
+            ->assertSee('Login or register to vote');
+
+        $this->assertCount(0, $idea->votes);
+    }
+
+    /** @test */
+    public function the_login_form_is_closed_when_the_correct_event_is_fired()
+    {
+        $idea = create(Idea::class);
+
+        Livewire::test(VoteButton::class, ['idea' => $idea])
+            ->call('vote')
+            ->assertSee('Login or register to vote')
+            ->emit('closeLogin')
+            ->assertDontSee('Login or register to vote');
+    }
 }

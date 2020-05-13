@@ -23,6 +23,16 @@ class VoteButton extends Component
     public bool $userHasVoted = false;
 
     /**
+     * @var bool
+     */
+    public bool $showLoginForm = false;
+
+    /**
+     * @var string[]
+     */
+    protected $listeners = ['closeLogin'];
+
+    /**
      * @param Idea $idea
      */
     public function mount(Idea $idea)
@@ -34,6 +44,11 @@ class VoteButton extends Component
 
     public function vote(): void
     {
+        if (!auth()->check()) {
+            $this->showLoginForm = true;
+            return;
+        }
+
         if ($this->userHasVoted) {
             return;
         }
@@ -41,6 +56,11 @@ class VoteButton extends Component
         $this->idea->votes()->create(['user_id' => auth()->id()]);
         $this->voteCount++;
         $this->userHasVoted = true;
+    }
+
+    public function closeLogin(): void
+    {
+        $this->showLoginForm = false;
     }
 
     public function render()
