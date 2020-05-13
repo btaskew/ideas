@@ -1,13 +1,11 @@
 <div class="flex border-b p-3 py-4">
     <div class="flex-1">
-        <h2 class="font-semibold text-xl mb-2">Idea title here</h2>
+        <h2 class="font-semibold text-xl mb-2">{{ $idea->title }}</h2>
         <p class="mb-3">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Abff aliquid asperiores, consequatur deleniti
-            dolore doloremque enim excepturi impedit iure labore modi nam nobis nostrum, officia officiis repellendus
-            similique ut!
+            {{ $idea->description }}
         </p>
         <div class="flex justify-between text-xs">
-            <span>Created about 2 hours ago by John Doe</span>
+            <span>Created about {{ $idea->created_at->diffForHumans() }} by {{ $idea->creator->name }}</span>
             <span>1 comment</span>
         </div>
     </div>

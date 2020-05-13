@@ -27,13 +27,15 @@
                 </ul>
             </div>
 
-            <div class="mt-6">
+            <div class="mt-6 mb-6">
 
-                @include('_idea')
-                @include('_idea')
-                @include('_idea')
-                @include('_idea')
-                @include('_idea')
+                <div class="mb-3">
+                    @foreach($ideas as $idea)
+                        @include('_idea')
+                    @endforeach
+                </div>
+
+                {{ $ideas->links() }}
 
             </div>
         </div>
