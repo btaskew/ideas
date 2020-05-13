@@ -8,7 +8,7 @@ class IdeasController extends Controller
 {
     public function index()
     {
-        $ideas = Idea::latest()->paginate(10);
+        $ideas = Idea::latest()->with(['creator', 'votes'])->paginate(10);
 
         return view('ideas', compact('ideas'));
     }
