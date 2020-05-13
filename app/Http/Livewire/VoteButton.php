@@ -30,12 +30,12 @@ class VoteButton extends Component
     /**
      * @var string[]
      */
-    protected $listeners = ['closeLogin'];
+    protected $listeners = ['closeLogin', 'voteRecorded' => 'vote'];
 
     /**
      * @param Idea $idea
      */
-    public function mount(Idea $idea)
+    public function mount(Idea $idea): void
     {
         $this->idea = $idea;
         $this->voteCount = $idea->votes->count();
@@ -48,6 +48,8 @@ class VoteButton extends Component
             $this->showLoginForm = true;
             return;
         }
+
+        $this->showLoginForm = false;
 
         if ($this->userHasVoted) {
             return;

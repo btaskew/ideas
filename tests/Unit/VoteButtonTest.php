@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Unit;
 
 use App\Http\Livewire\VoteButton;
 use App\Idea;
@@ -9,7 +9,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Livewire;
 use Tests\TestCase;
 
-class VotingTest extends TestCase
+class VoteButtonTest extends TestCase
 {
     use RefreshDatabase;
 
@@ -17,7 +17,6 @@ class VotingTest extends TestCase
     public function the_vote_button_is_displayed_correctly_if_the_user_has_voted_for_an_idea()
     {
         $this->login();
-
         $idea = create(Idea::class);
         create(Vote::class, ['idea_id' => $idea->id, 'user_id' => auth()->id()]);
 
@@ -28,9 +27,8 @@ class VotingTest extends TestCase
     /** @test */
     public function a_user_can_vote_for_an_idea()
     {
-        $idea = create(Idea::class);
-
         $this->login();
+        $idea = create(Idea::class);
 
         Livewire::test(VoteButton::class, ['idea' => $idea])
             ->call('vote')
@@ -46,14 +44,13 @@ class VotingTest extends TestCase
     public function a_user_cannot_vote_for_an_idea_twice()
     {
         $this->login();
-
         $idea = create(Idea::class);
         create(Vote::class, ['idea_id' => $idea->id, 'user_id' => auth()->id()]);
 
         Livewire::test(VoteButton::class, ['idea' => $idea])
             ->call('vote');
 
-        $this->assertCount(1, $idea->votes);
+        $this->assertCount(1, $idea->votes->fresh());
     }
 
     /** @test */
@@ -65,7 +62,7 @@ class VotingTest extends TestCase
             ->call('vote')
             ->assertSee('Login or register to vote');
 
-        $this->assertCount(0, $idea->votes);
+        $this->assertEquals(0, $idea->fresh()->votes->count());
     }
 
     /** @test */
@@ -78,5 +75,22 @@ class VotingTest extends TestCase
             ->assertSee('Login or register to vote')
             ->emit('closeLogin')
             ->assertDontSee('Login or register to vote');
+    }
+
+    /** @test */
+    public function a_vote_is_recorded_when_the_correct_event_is_fired()
+    {
+        $this->login();
+        $idea = create(Idea::class);
+
+        Livewire::test(VoteButton::class, ['idea' => $idea])
+            ->emit('voteRecorded')
+            ->assertSee('Voted!')
+            ->assertDontSee('Login or register to vote');
+
+        $this->assertDatabaseHas('votes', [
+            'user_id' => auth()->id(),
+            'idea_id' => $idea->id,
+        ]);
     }
 }
