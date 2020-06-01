@@ -3,19 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\Idea;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LoginVoteController extends Controller
 {
-    use AuthenticatesUsers;
-
     public function store(Request $request)
     {
-        $this->validateLogin($request);
+        $request->validate([
+            'email' => 'required|string',
+            'password' => 'required|string',
+            'idea' => 'required|integer',
+        ]);
 
-        if (!$this->attemptLogin($request)) {
-            return $this->sendFailedLoginResponse($request);
+        if (!Auth::attempt($request->only('email', 'password'))) {
+            return redirect('/login')->withErrors(['password' => 'Invalid credentials']);
         }
 
         $idea = Idea::findOrFail($request->input('idea'));

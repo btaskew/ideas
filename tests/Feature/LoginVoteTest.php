@@ -46,4 +46,19 @@ class LoginVoteTest extends TestCase
 
         $this->assertCount(1, Vote::all());
     }
+
+    /** @test */
+    public function the_user_is_redirected_to_the_login_page_if_their_credentials_are_invalid()
+    {
+        $idea = create(Idea::class);
+        $user = create(User::class);
+
+        $this->post('/login-vote', [
+            'email' => $user->email,
+            'password' => 'wrongpassword',
+            'idea' => $idea->id
+        ])
+            ->assertRedirect('/login')
+            ->assertSessionHasErrors('password');
+    }
 }
