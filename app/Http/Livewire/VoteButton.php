@@ -3,6 +3,8 @@
 namespace App\Http\Livewire;
 
 use App\Idea;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 use Livewire\Component;
 
 class VoteButton extends Component
@@ -30,7 +32,7 @@ class VoteButton extends Component
     /**
      * @var string[]
      */
-    protected $listeners = ['closeLogin', 'voteRecorded' => 'vote'];
+    protected $listeners = ['closeLogin', 'voteRecorded' => 'recordAndReload'];
 
     /**
      * @param Idea $idea
@@ -60,11 +62,23 @@ class VoteButton extends Component
         $this->userHasVoted = true;
     }
 
+    /**
+     * @return RedirectResponse
+     */
+    public function recordAndReload()
+    {
+        $this->idea->votes()->create(['user_id' => auth()->id()]);
+        return redirect()->to('/ideas');
+    }
+
     public function closeLogin(): void
     {
         $this->showLoginForm = false;
     }
 
+    /**
+     * @return View
+     */
     public function render()
     {
         return view('livewire.vote-button');

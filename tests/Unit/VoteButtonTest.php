@@ -78,15 +78,14 @@ class VoteButtonTest extends TestCase
     }
 
     /** @test */
-    public function a_vote_is_recorded_when_the_correct_event_is_fired()
+    public function a_vote_is_recorded_and_the_user_is_redirected_when_the_correct_event_is_fired()
     {
         $this->login();
         $idea = create(Idea::class);
 
         Livewire::test(VoteButton::class, ['idea' => $idea])
             ->emit('voteRecorded')
-            ->assertSee('Voted!')
-            ->assertDontSee('Login or register to vote');
+            ->assertRedirect('/ideas');
 
         $this->assertDatabaseHas('votes', [
             'user_id' => auth()->id(),
