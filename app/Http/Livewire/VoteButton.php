@@ -51,15 +51,10 @@ class VoteButton extends Component
             return;
         }
 
-        $this->showLoginForm = false;
-
-        if ($this->userHasVoted) {
-            return;
-        }
-
         $this->idea->votes()->create(['user_id' => auth()->id()]);
         $this->voteCount++;
         $this->userHasVoted = true;
+        $this->showLoginForm = false;
     }
 
     /**

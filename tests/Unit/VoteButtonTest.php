@@ -41,19 +41,6 @@ class VoteButtonTest extends TestCase
     }
 
     /** @test */
-    public function a_user_cannot_vote_for_an_idea_twice()
-    {
-        $this->login();
-        $idea = create(Idea::class);
-        create(Vote::class, ['idea_id' => $idea->id, 'user_id' => auth()->id()]);
-
-        Livewire::test(VoteButton::class, ['idea' => $idea])
-            ->call('vote');
-
-        $this->assertCount(1, $idea->votes->fresh());
-    }
-
-    /** @test */
     public function a_login_form_is_displayed_if_a_guest_attempts_to_vote()
     {
         $idea = create(Idea::class);

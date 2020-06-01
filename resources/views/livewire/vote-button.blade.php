@@ -3,12 +3,19 @@
         <div class="p-3 text-lg">
             {{ $voteCount }}
         </div>
-        <div
-            class="text-white w-full text-center p-1 {{ $userHasVoted ? 'bg-green-400' : 'bg-blue-400 cursor-pointer' }}"
-            wire:click="vote"
-        >
-            {{ $userHasVoted ? 'Voted!' : 'Vote' }}
-        </div>
+
+        @if($userHasVoted)
+            <div class="text-white w-full text-center p-1 bg-green-400">
+                Voted!
+            </div>
+        @else
+            <div
+                class="text-white w-full text-center p-1 bg-blue-400 cursor-pointer"
+                wire:click="vote"
+            >
+                Vote
+            </div>
+        @endif
     </div>
 
     @if ($showLoginForm)
