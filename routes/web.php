@@ -19,6 +19,8 @@ Route::get('/', function () {
 
 Route::get('/ideas', 'IdeasController@index');
 
+Route::post('/login-vote', 'LoginVoteController@store');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

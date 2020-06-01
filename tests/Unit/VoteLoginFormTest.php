@@ -17,7 +17,7 @@ class VoteLoginFormTest extends TestCase
     {
         $user = create(User::class);
 
-        Livewire::test(VoteLoginForm::class)
+        Livewire::test(VoteLoginForm::class, ['ideaId' => 1])
             ->set('email', $user->email)
             ->call('verifyEmail')
             ->assertSee('Password')
@@ -28,40 +28,11 @@ class VoteLoginFormTest extends TestCase
     /** @test */
     public function it_should_display_a_registration_message_if_the_email_entered_does_not_belong_to_a_user()
     {
-        Livewire::test(VoteLoginForm::class)
+        Livewire::test(VoteLoginForm::class, ['ideaId' => 1])
             ->set('email', 'foo@email.com')
             ->call('verifyEmail')
             ->assertSee('register')
             ->assertDontSee('Login and vote')
             ->assertDontSee('Next');
-    }
-
-    /** @test */
-    public function it_should_login_a_valid_user_and_emit_an_event_to_record_their_vote()
-    {
-        $user = create(User::class);
-
-        Livewire::test(VoteLoginForm::class)
-            ->set('email', $user->email)
-            ->set('password', 'password')
-            ->call('loginAndVote')
-            ->assertEmitted('voteRecorded');
-
-        $this->assertTrue(auth()->check());
-    }
-
-    /** @test */
-    public function it_should_display_an_error_message_if_the_credentials_were_incorrect()
-    {
-        $user = create(User::class);
-
-        Livewire::test(VoteLoginForm::class)
-            ->set('email', $user->email)
-            ->call('verifyEmail')
-            ->set('password', 'wrongpassword')
-            ->call('loginAndVote')
-            ->assertSee('These credentials do not match our records');
-
-        $this->assertFalse(auth()->check());
     }
 }

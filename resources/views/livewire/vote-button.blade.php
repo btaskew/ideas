@@ -19,6 +19,6 @@
     </div>
 
     @if ($showLoginForm)
-        @livewire('vote-login-form')
+        @livewire('vote-login-form', ['ideaId' => $idea->id])
     @endif
 </div>
