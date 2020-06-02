@@ -12,7 +12,7 @@
 
         <input
             type="email"
-            wire:model="email"
+            wire:model.debounce.400ms="email"
             name="email"
             class="rounded border border-app-light-blue mb-3 w-full p-1"
             placeholder="Email address"
