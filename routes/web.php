@@ -17,10 +17,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/ideas', 'IdeasController@index');
+Route::get('/ideas', 'IdeasController@index')->name('home');
 
 Route::post('/login-vote', 'LoginVoteController@store');
 
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
