@@ -9,6 +9,15 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Idea extends Model
 {
     /**
+     * @var string[]
+     */
+    protected $fillable = [
+        'title',
+        'description',
+        'user_id',
+    ];
+
+    /**
      * @return BelongsTo
      */
     public function creator(): BelongsTo

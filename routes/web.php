@@ -18,6 +18,7 @@ Route::get('/', function () {
 });
 
 Route::get('/ideas', 'IdeasController@index')->name('home');
+Route::post('/ideas', 'IdeasController@store');
 
 Route::post('/login-vote', 'LoginVoteController@store');
 
