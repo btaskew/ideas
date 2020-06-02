@@ -11,7 +11,12 @@ class IdeasController extends Controller
     {
         $ideas = Idea::latest()->with(['creator', 'votes'])->paginate(10);
 
-        return view('ideas', compact('ideas'));
+        return view('ideas.index', compact('ideas'));
+    }
+
+    public function show(Idea $idea)
+    {
+        return view('ideas.show', compact('idea'));
     }
 
     public function store(Request $request)

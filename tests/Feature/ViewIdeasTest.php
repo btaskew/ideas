@@ -29,4 +29,14 @@ class ViewIdeasTest extends TestCase
             ->assertSee($ideas->first()->title)
             ->assertDontSee($ideas->last()->title);
     }
+
+    /** @test */
+    public function anyone_can_view_a_specific_idea()
+    {
+        $idea = create(Idea::class);
+
+        $this->get('/ideas/' . $idea->id)
+            ->assertSee($idea->title)
+            ->assertSee($idea->description);
+    }
 }

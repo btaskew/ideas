@@ -24,13 +24,20 @@
     <div id="app">
         <section class="px-8 py-4 mb-3">
             <header class="container mx-auto">
-                <h1 class="text-3xl">Ideas</h1>
+                <h1 class="text-3xl">
+                    <a href="/ideas">Ideas</a>
+                </h1>
             </header>
         </section>
 
         <section class="px-8">
             <main class="container mx-auto">
-                @yield('content')
+                <div class="lg:flex">
+                    <div class="lg:w-1/5 lg:min-w-1/5">
+                        @include('_sidebar-links')
+                    </div>
+                    @yield('content')
+                </div>
             </main>
         </section>
     </div>

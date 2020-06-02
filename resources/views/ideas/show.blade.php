@@ -1,8 +1,8 @@
-<div class="flex border-b p-3 py-4">
+@extends('layouts.app')
+
+@section('content')
     <div class="flex-1">
-        <h2 class="font-semibold text-xl mb-2">
-            <a href="/ideas/{{ $idea->id }}" class="hover:text-app-dark-blue">{{ $idea->title }}</a>
-        </h2>
+        <h2 class="font-semibold text-xl mb-2">{{ $idea->title }}</h2>
         <p class="mb-3">
             {{ $idea->description }}
         </p>
@@ -11,6 +11,4 @@
             <span>1 comment</span>
         </div>
     </div>
-
-    @livewire('vote-button', ['idea' => $idea])
-</div>
+@endsection
