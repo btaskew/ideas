@@ -1,5 +1,5 @@
 <div class="lg:w-1/6 lg:px-10 px-1">
-    <div class="flex flex-col items-center border-2 rounded-lg {{ $userHasVoted ? 'border-green-400' : 'border-blue-400' }}">
+    <div class="flex flex-col items-center border-2 rounded-lg {{ $userHasVoted ? 'border-green-400' : 'border-app-blue' }}">
         <div class="p-3 text-lg">
             {{ $voteCount }}
         </div>
@@ -10,7 +10,7 @@
             </div>
         @else
             <div
-                class="text-white w-full text-center p-1 bg-blue-400 cursor-pointer"
+                class="text-white w-full text-center p-1 bg-app-blue cursor-pointer"
                 wire:click="vote"
             >
                 Vote

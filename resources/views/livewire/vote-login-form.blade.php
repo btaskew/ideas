@@ -14,29 +14,29 @@
             type="email"
             wire:model="email"
             name="email"
-            class="rounded border border-blue-200 mb-3 w-full p-1"
+            class="rounded border border-app-light-blue mb-3 w-full p-1"
             placeholder="Email address"
         />
 
         @if(!$emailSubmitted)
             <button
-                class="block rounded-l w-full p-2 text-xs font-bold bg-blue-400 text-white hover:bg-blue-700"
+                class="block rounded-l w-full p-2 text-xs font-bold bg-app-blue text-white hover:bg-app-dark-blue"
                 wire:click.prevent="verifyEmail"
             >
                 Next
             </button>
         @elseif(!$userExists)
             <p>
-                Please <a href="/register" class="text-blue-400 hover:text-blue-600">register</a> with the site before voting.
+                Please <a href="/register" class="text-app-blue hover:text-app-dark-blue">register</a> with the site before voting.
             </p>
         @else
             <p>Password:</p>
-            <input type="password" name="password" class="rounded border border-blue-200 mb-3 w-full p-1" />
+            <input type="password" name="password" class="rounded border border-app-light-blue mb-3 w-full p-1" />
 
             <input type="hidden" name="idea" value={{ $ideaId }} />
 
             <button
-                class="block rounded-l w-full p-2 text-xs font-bold bg-blue-400 text-white hover:bg-blue-700"
+                class="block rounded-l w-full p-2 text-xs font-bold bg-app-blue text-white hover:bg-app-dark-blue"
                 type="submit"
             >
                 Login and vote
