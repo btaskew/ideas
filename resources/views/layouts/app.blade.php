@@ -24,9 +24,9 @@
     <div id="app">
         <section class="px-8 py-4 mb-3">
             <header class="container mx-auto">
-                <h1 class="text-3xl">
-                    <a href="/ideas">Ideas</a>
-                </h1>
+                <a href="/ideas">
+                    <img src="{{ asset('images/banner-logo.png') }}" alt="Bright ideas" width="20%" />
+                </a>
             </header>
         </section>
 

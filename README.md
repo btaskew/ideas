@@ -5,3 +5,5 @@ Utilises:
 - Laravel 7.0
 - Livewire
 - Tailwind CSS
+
+Logos designed for free using [LogoMakr](https://my.logomakr.com/)
