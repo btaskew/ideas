@@ -6,10 +6,28 @@
 <body>
     <div id="app">
         <section class="px-8 py-4 mb-3">
-            <header class="container mx-auto">
+            <header class="container mx-auto flex justify-between items-center">
                 <a href="/ideas">
-                    <img src="{{ asset('images/banner-logo.png') }}" alt="Bright ideas" width="20%" />
+                    <img src="{{ asset('images/banner-logo.png') }}" alt="Bright ideas" width="65%" />
                 </a>
+
+                @auth()
+                    <a
+                        href="{{ route('logout') }}"
+                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                        class="text-app-dark-blue font-semibold"
+                    >
+                        Logout
+                    </a>
+
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        {{ csrf_field() }}
+                    </form>
+                @else()
+                    <a href="{{ route('login') }}" class="text-app-dark-blue font-semibold">
+                        Login
+                    </a>
+                @endauth
             </header>
         </section>
 
