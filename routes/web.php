@@ -23,4 +23,4 @@ Route::post('/ideas', 'IdeasController@store');
 
 Route::post('/login-vote', 'LoginVoteController@store');
 
-Auth::routes();
+Auth::routes(['verify' => false, 'confirm' => false]);
