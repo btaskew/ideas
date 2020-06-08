@@ -19,8 +19,18 @@ class IdeasController extends Controller
         return view('ideas.show', compact('idea'));
     }
 
+    public function create()
+    {
+        return view('ideas.create');
+    }
+
     public function store(Request $request)
     {
+        $request->validate([
+            'title' => 'required|string',
+            'description' => 'required|string',
+        ]);
+
         $idea = Idea::create([
             'title' => $request->input('title'),
             'description' => $request->input('description'),

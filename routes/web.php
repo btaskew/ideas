@@ -18,6 +18,7 @@ Route::get('/', function () {
 });
 
 Route::get('/ideas', 'IdeasController@index')->name('home');
+Route::get('/ideas/create', 'IdeasController@create')->middleware('auth');
 Route::get('/ideas/{idea}', 'IdeasController@show');
 Route::post('/ideas', 'IdeasController@store');
 
