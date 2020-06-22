@@ -7,11 +7,7 @@
             {{ $idea->description }}
         </p>
         <div class="flex justify-between text-xs">
-            @auth
-                <span>Created {{ $idea->created_at->diffForHumans() }} by {{ $idea->creator->name === auth()->user()->name ? 'you' : $idea->creator->name }}</span>
-            @else
-                <span>Created {{ $idea->created_at->diffForHumans() }} by {{ $idea->creator->name }}</span>
-            @endauth
+            <span>Created {{ $idea->created_at->diffForHumans() }} by {{ $idea->creator->displayName }}</span>
             <span>{{ $idea->comments->count() }} {{ \Illuminate\Support\Str::plural('comment', $idea->comments->count()) }}</span>
         </div>
     </div>

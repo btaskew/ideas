@@ -38,4 +38,16 @@ class User extends Authenticatable
     {
         return $this->hasMany(Idea::class);
     }
+
+    /**
+     * @return string
+     */
+    public function getDisplayNameAttribute(): string
+    {
+        if ($this->id === auth()->id()) {
+            return 'you';
+        }
+
+        return $this->name;
+    }
 }

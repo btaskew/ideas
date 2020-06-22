@@ -7,11 +7,7 @@
                 <div class="flex-1">
                     <h2 class="font-semibold text-3xl mb-4">{{ $idea->title }}</h2>
                     <div class="text-xs mb-5">
-                        @auth
-                            <span>Created {{ $idea->created_at->diffForHumans() }} by {{ $idea->creator->name === auth()->user()->name ? 'you' : $idea->creator->name }}</span>
-                        @else
-                            <span>Created {{ $idea->created_at->diffForHumans() }} by {{ $idea->creator->name }}</span>
-                        @endauth
+                        <span>Created {{ $idea->created_at->diffForHumans() }} by {{ $idea->creator->displayName }}</span>
                     </div>
                 </div>
 

@@ -19,4 +19,20 @@ class UserTest extends TestCase
 
         $this->assertTrue($user->ideas->contains($idea));
     }
+
+    /** @test */
+    public function if_the_user_is_logged_in_their_display_will_be_equal_to_you()
+    {
+        $this->actingAs($user = create(User::class, ['name' => 'John Doe']));
+
+        $this->assertEquals('you', $user->displayName);
+    }
+
+    /** @test */
+    public function if_the_user_is_not_logged_in_their_display_will_be_equal_to_their_name()
+    {
+        $user = create(User::class, ['name' => 'John Doe']);
+
+        $this->assertEquals('John Doe', $user->displayName);
+    }
 }
