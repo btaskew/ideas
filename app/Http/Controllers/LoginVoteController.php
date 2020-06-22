@@ -26,6 +26,6 @@ class LoginVoteController extends Controller
             $idea->votes()->create(['user_id' => auth()->id()]);
         }
 
-        return redirect('/ideas');
+        return redirect()->back();
     }
 }

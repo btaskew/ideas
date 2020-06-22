@@ -23,7 +23,7 @@ class LoginVoteTest extends TestCase
             'password' => 'password',
             'idea' => $idea->id
         ])
-            ->assertRedirect('/ideas');
+            ->assertRedirect('/');
 
         $this->assertDatabaseHas('votes', [
             'user_id' => $user->id,

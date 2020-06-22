@@ -16,5 +16,7 @@
         </div>
     </div>
 
-    @livewire('vote-button', ['idea' => $idea])
+    <div class="lg:w-1/6 lg:px-10 px-1">
+        @livewire('vote-button', ['idea' => $idea])
+    </div>
 </div>

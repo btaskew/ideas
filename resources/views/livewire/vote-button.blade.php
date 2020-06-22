@@ -1,4 +1,4 @@
-<div class="lg:w-1/6 lg:px-10 px-1" x-data="{hovering: false}">
+<div x-data="{hovering: false}">
     <div
         class="flex flex-col items-center border-2 rounded-lg {{ $userHasVoted ? 'border-green-400' : 'border-app-blue' }}"
         :class="{'transition duration-200 ease-in-out border-app-dark-blue' : hovering}"
