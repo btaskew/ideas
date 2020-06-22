@@ -15,7 +15,7 @@
                     <a
                         href="{{ route('logout') }}"
                         onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
-                        class="text-app-dark-blue font-semibold"
+                        class="text-app-dark-blue font-semibold hover:text-blue-800"
                     >
                         Logout
                     </a>
@@ -24,7 +24,7 @@
                         {{ csrf_field() }}
                     </form>
                 @else()
-                    <a href="{{ route('login') }}" class="text-app-dark-blue font-semibold">
+                    <a href="{{ route('login') }}" class="text-app-dark-blue font-semibold hover:text-blue-800">
                         Login
                     </a>
                 @endauth
@@ -34,7 +34,7 @@
         <section class="px-8">
             <main class="container mx-auto">
                 <div class="lg:flex">
-                    <div class="lg:w-1/5 lg:min-w-1/5">
+                    <div class="lg:w-1/5 lg:min-w-1/5 mr-10">
                         @include('_sidebar-links')
                     </div>
 

@@ -19423,6 +19423,10 @@ video {
   transition-duration: 300ms;
 }
 
+.duration-400 {
+  transition-duration: 400ms;
+}
+
 .duration-500 {
   transition-duration: 500ms;
 }
@@ -38201,6 +38205,10 @@ video {
 
   .sm\:duration-300 {
     transition-duration: 300ms;
+  }
+
+  .sm\:duration-400 {
+    transition-duration: 400ms;
   }
 
   .sm\:duration-500 {
@@ -56984,6 +56992,10 @@ video {
     transition-duration: 300ms;
   }
 
+  .md\:duration-400 {
+    transition-duration: 400ms;
+  }
+
   .md\:duration-500 {
     transition-duration: 500ms;
   }
@@ -75765,6 +75777,10 @@ video {
     transition-duration: 300ms;
   }
 
+  .lg\:duration-400 {
+    transition-duration: 400ms;
+  }
+
   .lg\:duration-500 {
     transition-duration: 500ms;
   }
@@ -94544,6 +94560,10 @@ video {
 
   .xl\:duration-300 {
     transition-duration: 300ms;
+  }
+
+  .xl\:duration-400 {
+    transition-duration: 400ms;
   }
 
   .xl\:duration-500 {
