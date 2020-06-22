@@ -22,6 +22,8 @@ Route::get('/ideas/create', 'IdeasController@create')->middleware('auth');
 Route::get('/ideas/{idea}', 'IdeasController@show');
 Route::post('/ideas', 'IdeasController@store');
 
+Route::post('/ideas/{idea}/comments', 'CommentsController@store');
+
 Route::post('/login-vote', 'LoginVoteController@store');
 
 Auth::routes(['verify' => false, 'confirm' => false]);

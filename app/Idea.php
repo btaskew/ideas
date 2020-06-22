@@ -32,4 +32,12 @@ class Idea extends Model
     {
         return $this->hasMany(Vote::class);
     }
+
+    /**
+     * @return HasMany
+     */
+    public function comments(): HasMany
+    {
+        return $this->hasMany(Comment::class);
+    }
 }

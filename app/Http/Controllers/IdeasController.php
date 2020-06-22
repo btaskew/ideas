@@ -9,14 +9,16 @@ class IdeasController extends Controller
 {
     public function index()
     {
-        $ideas = Idea::latest()->with(['creator', 'votes'])->paginate(10);
+        $ideas = Idea::latest()->with(['creator', 'votes', 'comments'])->paginate(10);
 
         return view('ideas.index', compact('ideas'));
     }
 
     public function show(Idea $idea)
     {
-        return view('ideas.show', compact('idea'));
+        $comments = $idea->comments()->paginate(10);
+
+        return view('ideas.show', compact('idea', 'comments'));
     }
 
     public function create()

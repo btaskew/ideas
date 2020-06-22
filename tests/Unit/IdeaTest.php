@@ -2,6 +2,7 @@
 
 namespace Tests\Unit;
 
+use App\Comment;
 use App\Idea;
 use App\User;
 use App\Vote;
@@ -28,5 +29,14 @@ class IdeaTest extends TestCase
         $vote = create(Vote::class, ['idea_id' => $idea->id]);
 
         $this->assertTrue($idea->votes->contains($vote));
+    }
+
+    /** @test */
+    public function an_idea_has_many_comments()
+    {
+        $idea = create(Idea::class);
+        $comment = create(Comment::class, ['idea_id' => $idea->id]);
+
+        $this->assertTrue($idea->comments->contains($comment));
     }
 }
