@@ -13,6 +13,6 @@
     </div>
 
     <div class="lg:w-1/6 lg:px-10 px-1">
-        @livewire('vote-button', ['idea' => $idea])
+        @livewire('vote-button', ['idea' => $idea], key($idea->id))
     </div>
 </div>

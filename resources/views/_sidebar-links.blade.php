@@ -9,7 +9,4 @@
             Filter by status
         </a>
     </li>
-    @auth
-        <div>You are logged in</div>
-    @endauth
 </ul>
