@@ -1,7 +1,6 @@
 <div>
     <div
-        class="absolute bg-gray-200 rounded-lg shadow-xl p-4 border-2 border-gray-200 z-10 -m-4"
-        style="right: 4rem; width: 24rem"
+        class="absolute right-1 w-screen bg-gray-200 rounded-lg shadow-xl p-4 border-2 border-gray-200 z-10 -m-4 m-auto lg:w-96 popup-position"
     >
         <p class="block mb-1 text-gray-900 leading-tight mb-4">
             Login or register to vote

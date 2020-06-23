@@ -7,6 +7,9 @@ module.exports = {
                 'app-blue': '#63b3ed',
                 'app-dark-blue': '#2b6cb0'
             },
+            spacing: {
+                '96': '24rem'
+            },
             transitionDuration: {
                 '400': '400ms'
             }

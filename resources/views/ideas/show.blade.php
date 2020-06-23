@@ -2,18 +2,16 @@
 
 @section('content')
     <div class="flex-1 mb-6">
-        <div class="mb-8">
+        <div class="pb-6 mb-4 border-b-2">
             <div class="flex mb-2">
                 <div class="flex-1">
-                    <h2 class="font-semibold text-3xl mb-4">{{ $idea->title }}</h2>
+                    <h2 class="font-semibold text-3xl mb-4 mr-1">{{ $idea->title }}</h2>
                     <div class="text-xs mb-5">
                         <span>Created {{ $idea->created_at->diffForHumans() }} by {{ $idea->creator->displayName }}</span>
                     </div>
                 </div>
 
-                <div class="lg:w-1/12">
-                    @livewire('vote-button', ['idea' => $idea])
-                </div>
+                @livewire('vote-button', ['idea' => $idea])
             </div>
 
             <p>
@@ -33,7 +31,7 @@
 
         @guest
             <div class="mt-5">
-                <p><a href="/login" class="text-app-dark-blue">Login</a> to comment</p>
+                <p><a href="/login" class="text-app-dark-blue text-sm">Login</a> to comment</p>
             </div>
         @endguest
     </div>

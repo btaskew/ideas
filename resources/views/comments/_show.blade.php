@@ -1,4 +1,4 @@
-<div class="mb-2 py-3 border-b-2">
+<div class="mb-3 py-2 border-b-2">
     <p class="mb-2">
         {{ $comment->body }}
     </p>
