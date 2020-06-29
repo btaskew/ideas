@@ -30,7 +30,18 @@ class IdeasList extends Component
     public function render()
     {
         return view('livewire.ideas-list', [
-            'ideas' => Idea::withCount('votes')->with(['creator', 'votes', 'comments'])->orderBy($this->orderBy, 'desc')->paginate(10),
+            'ideas' => $this->getIdeas(),
         ]);
+    }
+
+    /**
+     * @return mixed
+     */
+    private function getIdeas()
+    {
+        return Idea::withCount('votes')
+            ->with(['status', 'creator', 'votes', 'comments'])
+            ->orderBy($this->orderBy, 'desc')
+            ->paginate(10);
     }
 }
