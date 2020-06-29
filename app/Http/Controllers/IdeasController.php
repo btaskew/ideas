@@ -37,7 +37,7 @@ class IdeasController extends Controller
             'title' => $request->input('title'),
             'description' => $request->input('description'),
             'user_id' => auth()->id(),
-            'status_id' => Status::where('name', Statuses::NEW)->firstOrFail(['id'])->id,
+            'status_id' => Status::where('name', Statuses::NEW_STATUS)->firstOrFail(['id'])->id,
         ]);
 
         return redirect('/ideas/' . $idea->id);

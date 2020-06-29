@@ -22,7 +22,7 @@ class CreateIdeasTest extends TestCase
     /** @test */
     public function a_user_can_create_a_new_idea()
     {
-        create(Status::class, ['name' => Statuses::NEW]);
+        create(Status::class, ['name' => Statuses::NEW_STATUS]);
 
         $this->login()
             ->post('/ideas', [
@@ -40,7 +40,7 @@ class CreateIdeasTest extends TestCase
     /** @test */
     public function the_correct_status_is_applied_when_creating_a_new_idea()
     {
-        $status = create(Status::class, ['name' => Statuses::NEW]);
+        $status = create(Status::class, ['name' => Statuses::NEW_STATUS]);
 
         $this->login()
             ->post('/ideas', [
