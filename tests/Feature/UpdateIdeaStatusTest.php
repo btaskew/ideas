@@ -19,7 +19,7 @@ class UpdateIdeaStatusTest extends TestCase
         $idea = create(Idea::class, ['status_id' => $oldStatus->id]);
 
         $this->loginAdmin()
-            ->patch("ideas/$idea->id/status/$newStatus->id");
+            ->patch("ideas/$idea->id/status", ['status' => $newStatus->id]);
 
         $this->assertEquals($newStatus->id, $idea->fresh()->status_id);
     }
@@ -34,7 +34,7 @@ class UpdateIdeaStatusTest extends TestCase
         $idea = create(Idea::class, ['status_id' => $oldStatus->id]);
 
         $this->login()
-            ->patch("ideas/$idea->id/status/$newStatus->id")
+            ->patch("ideas/$idea->id/status", ['status' => $newStatus->id])
             ->assertStatus(403);
 
         $this->assertEquals($oldStatus->id, $idea->fresh()->status_id);

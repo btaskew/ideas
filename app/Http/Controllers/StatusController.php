@@ -4,11 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Idea;
 use App\Status;
+use Illuminate\Http\Request;
 
 class StatusController extends Controller
 {
-    public function update(Idea $idea, Status $status)
+    public function update(Idea $idea, Request $request)
     {
-        $idea->status()->associate($status)->save();
+        $request->validate([
+            'status' => 'required|integer|max:5'
+        ]);
+
+        $idea->status()->associate(Status::findOrFail($request->status))->save();
+
+        return redirect()->back();
     }
 }

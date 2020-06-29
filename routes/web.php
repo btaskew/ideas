@@ -30,5 +30,5 @@ Route::post('/ideas/{idea}/comments', 'CommentsController@store');
 Route::post('/login-vote', 'LoginVoteController@store');
 
 Route::group(['middleware' => 'admin'], function () {
-    Route::patch('/ideas/{idea}/status/{status}', 'StatusController@update');
+    Route::patch('/ideas/{idea}/status', 'StatusController@update');
 });

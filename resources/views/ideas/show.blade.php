@@ -25,6 +25,10 @@
         </div>
 
         @auth()
+            @if (auth()->user()->isAdmin())
+                @include('status/update')
+            @endif
+
             @include('comments/_create')
         @endauth
 
