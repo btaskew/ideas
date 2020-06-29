@@ -3,7 +3,7 @@
 use App\Idea;
 use Illuminate\Database\Seeder;
 
-class IdeasSeeder extends Seeder
+class IdeaSeeder extends Seeder
 {
     /**
      * Run the database seeds.
