@@ -15,6 +15,7 @@ class Idea extends Model
         'title',
         'description',
         'user_id',
+        'status_id',
     ];
 
     /**
@@ -39,5 +40,13 @@ class Idea extends Model
     public function comments(): HasMany
     {
         return $this->hasMany(Comment::class);
+    }
+
+    /**
+     * @return BelongsTo
+     */
+    public function status(): BelongsTo
+    {
+        return $this->belongsTo(Status::class);
     }
 }

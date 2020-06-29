@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Attributes\Statuses;
 use App\Idea;
+use App\Status;
 use Illuminate\Http\Request;
 
 class IdeasController extends Controller
@@ -35,6 +37,7 @@ class IdeasController extends Controller
             'title' => $request->input('title'),
             'description' => $request->input('description'),
             'user_id' => auth()->id(),
+            'status_id' => Status::where('name', Statuses::NEW)->firstOrFail(['id'])->id,
         ]);
 
         return redirect('/ideas/' . $idea->id);

@@ -3,6 +3,7 @@
 /** @var Factory $factory */
 
 use App\Idea;
+use App\Status;
 use App\User;
 use Faker\Generator as Faker;
 use Illuminate\Database\Eloquent\Factory;
@@ -12,5 +13,6 @@ $factory->define(Idea::class, function (Faker $faker) {
         'user_id' => factory(User::class),
         'title' => $faker->sentence,
         'description' => $faker->paragraph,
+        'status_id' => factory(Status::class),
     ];
 });

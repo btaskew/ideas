@@ -2,6 +2,8 @@
 
 namespace Tests\Feature;
 
+use App\Attributes\Statuses;
+use App\Status;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -20,6 +22,8 @@ class CreateIdeasTest extends TestCase
     /** @test */
     public function a_user_can_create_a_new_idea()
     {
+        create(Status::class, ['name' => Statuses::NEW]);
+
         $this->login()
             ->post('/ideas', [
                 'title' => 'New idea',
@@ -30,6 +34,23 @@ class CreateIdeasTest extends TestCase
         $this->assertDatabaseHas('ideas', [
             'title' => 'New idea',
             'description' => 'My new idea',
+        ]);
+    }
+
+    /** @test */
+    public function the_correct_status_is_applied_when_creating_a_new_idea()
+    {
+        $status = create(Status::class, ['name' => Statuses::NEW]);
+
+        $this->login()
+            ->post('/ideas', [
+                'title' => 'New idea',
+                'description' => 'My new idea',
+            ])
+            ->assertRedirect('/ideas/1');
+
+        $this->assertDatabaseHas('ideas', [
+            'status_id' => $status->id,
         ]);
     }
 
