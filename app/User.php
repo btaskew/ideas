@@ -32,14 +32,6 @@ class User extends Authenticatable
     ];
 
     /**
-     * @return HasMany
-     */
-    public function ideas(): HasMany
-    {
-        return $this->hasMany(Idea::class);
-    }
-
-    /**
      * @return string
      */
     public function getDisplayNameAttribute(): string
@@ -49,5 +41,21 @@ class User extends Authenticatable
         }
 
         return $this->name;
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function ideas(): HasMany
+    {
+        return $this->hasMany(Idea::class);
+    }
+
+    /**
+     * @return bool
+     */
+    public function isAdmin(): bool
+    {
+        return $this->is_admin;
     }
 }

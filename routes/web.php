@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,6 +18,8 @@ Route::get('/', function () {
     return redirect('/ideas');
 });
 
+Auth::routes(['verify' => false, 'confirm' => false]);
+
 Route::get('/ideas', 'IdeasController@index')->name('home');
 Route::get('/ideas/create', 'IdeasController@create')->middleware('auth');
 Route::get('/ideas/{idea}', 'IdeasController@show');
@@ -26,4 +29,6 @@ Route::post('/ideas/{idea}/comments', 'CommentsController@store');
 
 Route::post('/login-vote', 'LoginVoteController@store');
 
-Auth::routes(['verify' => false, 'confirm' => false]);
+Route::group(['middleware' => 'admin'], function () {
+    Route::patch('/ideas/{idea}/status/{status}', 'StatusController@update');
+});

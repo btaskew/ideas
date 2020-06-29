@@ -20,6 +20,14 @@ abstract class TestCase extends BaseTestCase
      */
     protected function login(): TestCase
     {
-        return $this->actingAs(factory(User::class)->create());
+        return $this->actingAs(create(User::class));
+    }
+
+    /**
+     * @return TestCase
+     */
+    protected function loginAdmin(): TestCase
+    {
+        return $this->actingAs(create(User::class, ['is_admin' => true]));
     }
 }

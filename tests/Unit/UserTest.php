@@ -35,4 +35,14 @@ class UserTest extends TestCase
 
         $this->assertEquals('John Doe', $user->displayName);
     }
+
+    /** @test */
+    public function a_user_can_determine_if_it_is_an_admin()
+    {
+        $adminUser = create(User::class, ['is_admin' => true]);
+        $this->assertTrue($adminUser->isAdmin());
+
+        $normalUser = create(User::class, ['is_admin' => false]);
+        $this->assertFalse($normalUser->isAdmin());
+    }
 }
