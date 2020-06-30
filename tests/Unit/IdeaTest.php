@@ -5,6 +5,7 @@ namespace Tests\Unit;
 use App\Comment;
 use App\Idea;
 use App\Status;
+use App\StatusComment;
 use App\User;
 use App\Vote;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -48,5 +49,14 @@ class IdeaTest extends TestCase
         $idea = create(Idea::class, ['status_id' => $status->id]);
 
         $this->assertTrue($idea->status->is($status));
+    }
+
+    /** @test */
+    public function an_idea_has_many_status_comments()
+    {
+        $idea = create(Idea::class);
+        $comment = create(StatusComment::class, ['idea_id' => $idea->id]);
+
+        $this->assertTrue($idea->statusComments->contains($comment));
     }
 }

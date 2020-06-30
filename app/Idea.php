@@ -49,4 +49,27 @@ class Idea extends Model
     {
         return $this->belongsTo(Status::class);
     }
+
+    /**
+     * @return HasMany
+     */
+    public function statusComments(): HasMany
+    {
+        return $this->hasMany(StatusComment::class);
+    }
+
+    /**
+     * @param int    $statusId
+     * @param string $comment
+     */
+    public function updateStatus(int $statusId, string $comment): void
+    {
+        $this->status()->associate(Status::findOrFail($statusId))->save();
+
+        $this->statusComments()->create([
+            'body' => $comment,
+            'status_id' => $statusId,
+            'user_id' => auth()->id(),
+        ]);
+    }
 }
