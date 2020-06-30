@@ -77,7 +77,7 @@
                         </a>
 
                         <form
-                            id="logout-form"
+                            id="mobile-logout-form"
                             action="{{ route('logout') }}"
                             method="POST"
                             style="display: none;"
