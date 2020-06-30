@@ -8,7 +8,6 @@
     <title>{{ config('app.name', 'Ideas') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.3.5/dist/alpine.min.js" defer></script>
 
     <!-- Fonts -->
