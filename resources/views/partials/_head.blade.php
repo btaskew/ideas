@@ -9,6 +9,7 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.3.5/dist/alpine.min.js" defer></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -18,5 +19,6 @@
     <link href="{{ asset('css/main.css') }}" rel="stylesheet">
     @livewireStyles
 
-    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.3.5/dist/alpine.min.js" defer></script>
+    <!-- Tab logo -->
+    <link rel="icon" type="image/png" href="{{ asset('images/tab-icon.png') }}" sizes="32x32" />
 </head>
