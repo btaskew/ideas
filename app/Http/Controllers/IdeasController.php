@@ -16,7 +16,7 @@ class IdeasController extends Controller
 
     public function show(Idea $idea)
     {
-        $comments = $idea->comments()->paginate(10);
+        $comments = $idea->getAllComments()->paginate(10);
 
         return view('ideas.show', compact('idea', 'comments'));
     }

@@ -8,6 +8,7 @@ use App\Status;
 use App\StatusUpdate;
 use App\User;
 use App\Vote;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -58,5 +59,19 @@ class IdeaTest extends TestCase
         $update = create(StatusUpdate::class, ['idea_id' => $idea->id]);
 
         $this->assertTrue($idea->statusUpdates->contains($update));
+    }
+
+    /** @test */
+    public function an_idea_can_fetch_all_its_comments_with_status_updates_in_reverse_order_of_creation()
+    {
+        $idea = create(Idea::class);
+        $comment = create(Comment::class, ['idea_id' => $idea->id, 'created_at' => '2020-01-01 09:00']);
+        $update = create(StatusUpdate::class, ['idea_id' => $idea->id, 'created_at' => '2020-01-01 10:00']);
+
+        $allComments = $idea->getAllComments();
+        $this->assertInstanceOf(Collection::class, $allComments);
+        $this->assertTrue($allComments->contains($update));
+        $this->assertTrue($allComments->contains($comment));
+        $this->assertTrue($allComments->first()->is($update));
     }
 }

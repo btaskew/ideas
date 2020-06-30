@@ -8,7 +8,7 @@
                     <h2 class="font-semibold text-3xl mb-4 mr-1">{{ $idea->title }}</h2>
                     <div class="mb-5">
                         <p>
-                            @include('partials/_idea_status')
+                            @include('partials/_idea_status', ['status' => $idea->status])
                         </p>
                         <span class="text-xs">
                             Created {{ $idea->created_at->diffForHumans() }} by {{ $idea->creator->displayName }}

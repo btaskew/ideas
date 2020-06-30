@@ -40,6 +40,10 @@ class User extends Authenticatable
             return 'you';
         }
 
+        if ($this->isAdmin()) {
+            return $this->name . ' (admin)';
+        }
+
         return $this->name;
     }
 

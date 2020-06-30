@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Comment;
 use App\Idea;
+use App\StatusUpdate;
 use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -52,6 +53,18 @@ class ViewIdeasTest extends TestCase
         $this->get('/ideas/' . $idea->id)
             ->assertSee($comment->body)
             ->assertSee($commenter->name);
+    }
+
+    /** @test */
+    public function the_idea_page_includes_an_ideas_status_updates()
+    {
+        $idea = create(Idea::class);
+        $updater = create(User::class);
+        $update = create(StatusUpdate::class, ['idea_id' => $idea->id, 'user_id' => $updater->id]);
+
+        $this->get('/ideas/' . $idea->id)
+            ->assertSee($update->comment)
+            ->assertSee($updater->name);
     }
 
     /** @test */

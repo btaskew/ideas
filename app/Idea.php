@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -71,5 +72,13 @@ class Idea extends Model
             'status_id' => $statusId,
             'user_id' => auth()->id(),
         ]);
+    }
+
+    /**
+     * @return Collection
+     */
+    public function getAllComments(): Collection
+    {
+        return $this->comments->concat($this->statusUpdates)->sortByDesc('created_at');
     }
 }

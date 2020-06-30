@@ -5,7 +5,7 @@
         </h2>
 
         <p class="mb-2 text-sm">
-            @include('partials/_idea_status')
+            @include('partials/_idea_status', ['status' => $idea->status])
         </p>
 
         <p class="mb-3">
@@ -14,7 +14,7 @@
 
         <div class="flex justify-between text-xs">
             <span>Created {{ $idea->created_at->diffForHumans() }} by {{ $idea->creator->displayName }}</span>
-            <span>{{ $idea->comments->count() }} {{ \Illuminate\Support\Str::plural('comment', $idea->comments->count()) }}</span>
+            <span>{{ $idea->getAllComments()->count() }} {{ \Illuminate\Support\Str::plural('comment', $idea->getAllComments()->count()) }}</span>
         </div>
     </div>
 
