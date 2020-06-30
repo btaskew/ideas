@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Idea;
-use App\Status;
-use App\StatusComment;
 use Illuminate\Http\Request;
 
 class StatusController extends Controller

@@ -25,8 +25,8 @@ class UpdateIdeaStatusTest extends TestCase
             ]);
 
         $this->assertEquals($newStatus->id, $idea->fresh()->status_id);
-        $this->assertDatabaseHas('status_comments', [
-            'body' => 'This is a status update',
+        $this->assertDatabaseHas('status_updates', [
+            'comment' => 'This is a status update',
             'idea_id' => $idea->id,
             'status_id' => $newStatus->id,
         ]);

@@ -53,9 +53,9 @@ class Idea extends Model
     /**
      * @return HasMany
      */
-    public function statusComments(): HasMany
+    public function statusUpdates(): HasMany
     {
-        return $this->hasMany(StatusComment::class);
+        return $this->hasMany(StatusUpdate::class);
     }
 
     /**
@@ -66,8 +66,8 @@ class Idea extends Model
     {
         $this->status()->associate(Status::findOrFail($statusId))->save();
 
-        $this->statusComments()->create([
-            'body' => $comment,
+        $this->statusUpdates()->create([
+            'comment' => $comment,
             'status_id' => $statusId,
             'user_id' => auth()->id(),
         ]);
