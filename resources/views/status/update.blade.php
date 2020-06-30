@@ -24,19 +24,19 @@
         </div>
 
         <div class="mb-4">
-            <label for="email" class="input-label">Comment</label>
+            <label for="comment" class="input-label">Comment</label>
             <textarea
-                name="body"
-                id="body"
+                name="comment"
+                id="comment"
                 cols="30"
                 rows="5"
                 required
                 maxlength="400"
                 placeholder="I'm updating the status of this idea because..."
-                class="basic-input @error('body') border-red-700 @enderror"
+                class="basic-input @error('comment') border-red-700 @enderror"
             ></textarea>
 
-            @error('body')
+            @error('comment')
             <div class="mt-2">
                 <span role="alert" class="error-message">
                     {{ $message }}
