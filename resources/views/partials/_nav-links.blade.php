@@ -15,12 +15,4 @@
             Add idea
         </a>
     </li>
-    <li>
-        <a
-            href="#"
-            class="mb-4 block border-b-2 py-1 transition duration-300 ease-in-out hover:border-app-blue"
-        >
-            Filter by status
-        </a>
-    </li>
 </ul>
