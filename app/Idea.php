@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Notifications\StatusUpdated;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -65,13 +66,17 @@ class Idea extends Model
      */
     public function updateStatus(int $statusId, string $comment): void
     {
-        $this->status()->associate(Status::findOrFail($statusId))->save();
+        $newStatus = Status::findOrFail($statusId);
+
+        $this->status()->associate($newStatus)->save();
 
         $this->statusUpdates()->create([
             'comment' => $comment,
             'status_id' => $statusId,
             'user_id' => auth()->id(),
         ]);
+
+        $this->creator->notify(new StatusUpdated($this, $newStatus));
     }
 
     /**
