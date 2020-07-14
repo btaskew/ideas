@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Idea;
+use App\Notifications\NewComment;
 use App\Notifications\VoteRecorded;
 use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -24,5 +25,18 @@ class NotificationTest extends TestCase
         $idea->votes()->create(['user_id' => $voter->id]);
 
         Notification::assertSentTo($owner, VoteRecorded::class);
+    }
+
+    /** @test */
+    public function an_ideas_owner_is_notified_when_someone_comments_on_their_idea()
+    {
+        Notification::fake();
+        $owner = create(User::class);
+        $voter = create(User::class);
+        $idea = create(Idea::class, ['user_id' => $owner->id]);
+
+        $idea->comments()->create(['user_id' => $voter->id, 'body' => 'Test comment']);
+
+        Notification::assertSentTo($owner, NewComment::class);
     }
 }
