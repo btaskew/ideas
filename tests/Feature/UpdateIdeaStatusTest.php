@@ -3,8 +3,11 @@
 namespace Tests\Feature;
 
 use App\Idea;
+use App\Notifications\StatusUpdated;
 use App\Status;
+use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Notification;
 use Tests\TestCase;
 
 class UpdateIdeaStatusTest extends TestCase
@@ -30,6 +33,24 @@ class UpdateIdeaStatusTest extends TestCase
             'idea_id' => $idea->id,
             'status_id' => $newStatus->id,
         ]);
+    }
+
+    /** @test */
+    public function a_notification_is_sent_to_the_ideas_owner_when_the_status_is_updated()
+    {
+        Notification::fake();
+
+        $newStatus = create(Status::class);
+        $owner = create(User::class);
+        $idea = create(Idea::class, ['user_id' => $owner->id]);
+
+        $this->loginAdmin()
+            ->patch("ideas/$idea->id/status", [
+                'status' => $newStatus->id,
+                'comment' => 'This is a status update',
+            ]);
+
+        Notification::assertSentTo($owner, StatusUpdated::class);
     }
 
     /** @test */

@@ -26,35 +26,22 @@ class NewComment extends Notification
     }
 
     /**
-     * @param mixed $notifiable
      * @return array
      */
-    public function via($notifiable)
+    public function via()
     {
         return ['mail'];
     }
 
     /**
-     * @param mixed $notifiable
      * @return MailMessage
      */
-    public function toMail($notifiable)
+    public function toMail()
     {
         return (new MailMessage)
             ->subject('You got a comment!')
             ->greeting('Hey there!')
             ->line('Someone has commented on your idea "' . $this->idea->title .'".')
             ->action('View your amazing idea', url('/ideas/' . $this->idea->id));
-    }
-
-    /**
-     * @param mixed $notifiable
-     * @return array
-     */
-    public function toArray($notifiable)
-    {
-        return [
-            //
-        ];
     }
 }

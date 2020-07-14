@@ -33,31 +33,15 @@ class VoteRecorded extends Notification
     }
 
     /**
-     * Get the mail representation of the notification.
-     *
-     * @param mixed $notifiable
-     * @return \Illuminate\Notifications\Messages\MailMessage
+     * @return MailMessage
      */
-    public function toMail($notifiable)
+    public function toMail()
     {
         return (new MailMessage)
             ->subject('You got a vote!')
             ->greeting('Hey there!')
-            ->line('Someone has voted for your idea "' . $this->idea->title .'".')
+            ->line('Someone has voted for your idea "' . $this->idea->title . '".')
             ->action('View your amazing idea', url('/ideas/' . $this->idea->id))
             ->line('Great job!');
-    }
-
-    /**
-     * Get the array representation of the notification.
-     *
-     * @param mixed $notifiable
-     * @return array
-     */
-    public function toArray($notifiable)
-    {
-        return [
-            //
-        ];
     }
 }
